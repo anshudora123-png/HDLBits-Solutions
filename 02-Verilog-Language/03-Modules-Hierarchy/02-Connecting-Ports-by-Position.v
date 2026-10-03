@@ -1,7 +1,11 @@
-module top_module ( input a, input b, output out );
-    mod_a inst_1(
-        .in1(a),
-        .in2(b),
-        .out(out));
+module top_module ( 
+    input a, 
+    input b, 
+    input c,
+    input d,
+    output out1,
+    output out2
+);
+    mod_a inst_1(out1,out2,a,b,c,d);
 
 endmodule

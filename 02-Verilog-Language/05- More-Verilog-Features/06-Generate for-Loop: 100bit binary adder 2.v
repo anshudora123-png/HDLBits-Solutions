@@ -1,0 +1,30 @@
+module top_module( 
+    input [99:0] a, b,
+    input cin,
+    output [99:0] cout,
+    output [99:0] sum );
+    
+    wire[100:0] carry;
+    assign carry[0] = cin;
+    
+    genvar i;
+    generate
+        for (i=0; i<100; i=i+1) begin : FA
+            full_adder fa(
+                a[i] , b[i], carry[i],
+                sum[i], carry[i+1]
+            );
+            assign cout[i] = carry [i+1];
+        end
+    endgenerate
+endmodule
+             
+
+module full_adder (
+    input a,b,cin,
+    output sum, cout
+);
+    assign sum = a^b^cin ;
+    assign cout= (a & b) | (b & cin) | (a & cin );
+    
+endmodule
